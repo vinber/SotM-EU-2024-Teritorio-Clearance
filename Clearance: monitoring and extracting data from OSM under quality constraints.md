@@ -11,7 +11,7 @@ css: 'style.css'
 - Vincent Bergeot - v.bergeot@teritorio.fr
 - Frédéric Rodrigo - f.rodrigo@teritorio.fr
 
-Teritorio
+[Teritorio](https://www.teritorio.fr/)
 
 ---
 
