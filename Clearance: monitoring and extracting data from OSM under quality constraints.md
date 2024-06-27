@@ -1,16 +1,16 @@
 ---
-title: 2024 - Clearance, filtrer les données OSM pour conserver en qualité de la base utilisée
+title: 2024 - Clearance, contrôler collaborativement des données OpenStreetMap pour des usages thématiques 
 css: 'style.css'
 ---
 
 
 # Clearance
-## Suivre et extraire des données d’OSM sous contrainte de qualité
+## contrôler collaborativement des données OpenStreetMap pour des usages thématiques 
 
 ## SotM FR 2024
 
-Vincent Bergeot - v.bergeot@teritorio.fr
-Frédéric Rodrigo - f.rodrigo@teritorio.fr
+- Vincent Bergeot - v.bergeot@teritorio.fr
+- Frédéric Rodrigo - f.rodrigo@teritorio.fr
 
 Teritorio
 
@@ -57,7 +57,6 @@ Par ex : le tourisme, les stations ferroviaires, la randonnée …
 - mise en ligne de la cartographie publique
 - Clearance permet de maintenir la qualité des données OSM
 
-
 ----
 
 ### Des objets filtrés
@@ -78,7 +77,6 @@ Par ex : le tourisme, les stations ferroviaires, la randonnée …
 Regroupement de modifications faites localement (proximité géographique) :
 - actuellement pour permettre une validation manuelle contextualisé
 - ensuite pour avoir des validations automatiques sur des LoCha (un objet (node) effacé et recréé (way) avec les mêmes attributs, ...)
-  - 
 
 ----
 
@@ -116,7 +114,6 @@ Regroupement de modifications faites localement (proximité géographique) :
 
 ## Et la suite pour Clearance
 
-
 - Les améliorations
     - l'interface, signalement RSS, ...
     - anotations sur les signalements (à mofifier, besoin d'aide, ...)
@@ -124,11 +121,6 @@ Regroupement de modifications faites localement (proximité géographique) :
     - les validations automatiques de LoCha
     - des règles de qualité pour valider automatiquement des objets (opening_hours, téléphone, https://, ...),
     - réputation des contributrices, contributeurs
-    - 
-
-
-
-
 
 ---
 
