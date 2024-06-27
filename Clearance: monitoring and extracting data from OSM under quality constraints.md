@@ -1,138 +1,33 @@
 ---
-title: Clearance monitoring and extracting data from OSM under quality constraints
+title: 2024 - Clearance, filtrer les données OSM pour conserver en qualité de la base utilisée
 css: 'style.css'
 ---
 
 # Clearance
-## Monitoring and extracting data from OSM under quality constraints
+## Suivre et extraire des données d’OSM sous contrainte de qualité
 
-## SotM EU 2023
+## SotM FR 2024
 
-Frédéric Rodrigo - Teritorio
+Vincent Bergeot - v.bergeot@teritorio.fr
+Frédéric Rodrigo - f.rodrigo@teritorio.fr
 
-frederic@teritorio.fr
-
----
-
-## Context
-
-Needs
-- Expose and provide OSM data
-- web site, printed maps
-- Quality and liability of content
-- eg. defibrillator
-
-Goals
-- Contribute to OSM
-- Collaborate
-- Update local data
+Teritorio
 
 ---
 
-# Quality
+## Contexte
 
-----
+Besoins
+- Exposer et diffuser des données OSM
+  - site web, carte papier
+- Qualité et responsabilité contenu
+  - par ex. DAE
 
-### Quality – In first place
-
-Editors validators
-
-- Variables rules
-- Optional: validation and rules respect
-- Validation Rules depends of Usage
-
-----
-
-### Quality - After contributions
-
-Anomalies detections
-
-- Keep Right
-- OSM Inspector
-- Osmose-QA
-
-Endless Iterations on quality
-
----
-
-## Data Update
-
-- Incoming Diff
-- Corrections back to OSM
-
-![](include/04-OSM-diff-update.png)
-
-Quality of incoming update is never know
-
----
-
-## External changes validation
-
-Changes validation of OSM
-
-- OSMCha
-- Osm-analytic-tracker
-
-![](include/09-osmcha.png)
-
----
-
-## Update filter
-
-![](include/05-OSM-diff-update-filter.png)
-
-----
-
-### Simple Filtering
-
-- [LeBonTag](https://www.lebontag.fr/) (FLOSS)
-- Teritorio (not FLOSS)
-
-![](include/11-ideomap.png)
-
-----
-
-### LoCha
-
-MaRS / Daylight from Meta (Facebook)
-
-- Local changes coherence
-- Partial update (local and temporal)
-
-![](include/12-mars.png)
-
----
-
-## Problems
-
-- MaRS
-  - internal closed project
-- Daylight
-  - unknown validation rules
-  - internal agenda
-- LeBonTag
-  - not open to data collaboration
-  - target GIS usage
-  - by object validation
-
----
-
-## Functionals Goals
-
-- Configurable rules
-- Avoid human validation: Automatic Filter
-- Collaborative
-  - on Human validation
-  - on Shared interest: Territories, Thematics
-- Locals coherence of objects
-
-----
-
-## Technical Goals
-
-- Act as an OSM data proxy
-  - I/O format: PBF OSM + diff
-- Stream Update, up to minutely diff
+Souhait
+- Contribuer à OSM
+- Améliorer les données d'abord dans OSM
+- Collaborer
+- **Mettre à jour les données**
 
 ---
 
@@ -140,98 +35,107 @@ MaRS / Daylight from Meta (Facebook)
 
 ----
 
-## Clearance Instance
+## Projet Clearance
 
-One instance: Many projects
+1 instance Clearance, plusieurs projets.
 
-One project, One community:
-- Area
-- Thematic
-- Rules Set
-- OSM Extract + Diff
+Un projet. Une communauté.
+- Une zone
+- Une thématique
+- Règles de validation
 
-Eg: Tourism, Railway Stations, Hiking…
-
-----
-
-## Clearance Engine
-
-- Database, import
-  - OSM Extract
-  - Diff, as is, unapplied
-- Validation Rules Engine (on LoCha)
-  - OK ⇒ Apply LoCha
-  - Not OK ⇒ Hold LoCha
-    - If Σ changes OK ⇒ apply
-    - Else hold LoCha unless manual validation
-- Export as OSM Extract + Diff
-
-Invariant: quality is increasing*
+Par ex : le tourisme, les stations ferroviaires, la randonnée …
 
 ----
 
-## Validation Rules
+### Clearance dans un projet
 
-Check on
-- metadata
-- tags
-- geom
-- changeset
+- formation dans les OT
+- contributions pour arriver à un niveau accepté de qualité
+- Clearance accompagne la montée en qualité des données OSM
+- mise en ligne de la cartographie publique
+- Clearance permet de maintenir la qualité des données OSM
 
-----
-
-## Validation Rules
-
-Objects changes alone or in groups
-
-- Acceptable
-- With Doubt / Without validation Annotation
-- Rejected
-
-Check between last accepted object version and holden changes
 
 ----
 
-## Rules examples
+### Des objets filtrés
 
-- Changes
-  - move geom > 10m
-  - changes by a new contributor
-  - tags black list
-- Final state validation
-  - bakery should have a name
-  - bakery should not be duplicated
+- base *réputée juste* (un extract)
+- les modifications (diff) arrivent
+  - par défaut dans la base sauf sur la zone d'intérêt si
+      - effacement d'objets
+      - déplacement d'objets selon une distance personalisable
+      - des attributs surveillés
+      - des listes de contributeurs
+- à chaque recalcul suite à des modifications (diff) les objets signalés sont réévalués
+
+----
+
+### Local Changeset (LoCha)
+
+Regroupement de modifications faites localement (proximité géographique) :
+- actuellement pour permettre une validation manuelle contextualisé
+- ensuite pour avoir des validations automatiques sur des LoCha (un objet (node) effacé et recréé (way) avec les mêmes attributs, ...)
+  - 
+
+----
+
+### validation manuelle
+
+- validation collaborative par projet basé sur les comptes OSM
+- les objets filtrés sont :
+  - aggrégés (3 modifications faites dans OSM, cela passe de la version X à la version X+3)
+  - contextualisés avec les LoCha,
+  - filtrables selon le territoire, l'utilisateur, la date de modifications, les attributs
+  - associés à des outils pour mieux comprendre les modifications,
+  - liés à vos éditeurs préférés pour aller modifier OSM,
+  - acceptés (individuellement ou par lots)
+
+----
+
+### une api "overpass" partielle
+
+- la base "filtrée" en sortie de Clearance est interrogeable
+- des requêtes overpass peuvent être faites (voir la conférence underpass ...)
+- permet de passer de requêtes overpass sur OSM à une base OSM filtrée,
 
 ---
 
-## Clearance Project Advancement: Beta
+## Clearance en prod
 
 - ✅ Import / Export + diff
-- ✅ Web UI for check and manual validation
-- ⌛ Rules Set Validation
-- ⌛ Access validated data with Overpass Like API
-- 🯀 LoCha Validation
+- ⌛ Jeux de règle de validation
+- ⏳ Interface de contrôle et validation manuelle
+- ⌛ Validation par LoCha
 
-Demo Beta: [https://clearance-dev.teritorio.xyz](https://clearance-dev.teritorio.xyz)
+[Démo](https://clearance.teritorio.xyz/)
 
 ---
 
-# Conclusion
+## Et la suite pour Clearance
 
-Clearance: OSM Extracts under quality conformance
 
-- Prototype in progress
-- Ask for new project on the Beta instance
+- Les améliorations
+    - l'interface, signalement RSS, ...
+    - anotations sur les signalements (à mofifier, besoin d'aide, ...)
+    - les LoCha,
+    - les validations automatiques de LoCha
+    - des règles de qualité pour valider automatiquement des objets (opening_hours, téléphone, https://, ...),
+    - réputation des contributrices, contributeurs
+    - 
+
+
+
+
+
+---
+
+## En savoir plus
+
 - https://github.com/teritorio/clearance
-- State of the arts https://s.carto.guide/69d5vq
+- https://github.com/teritorio/clearance-frontend
+- [State of the Map France 2023](https://peertube.openstreetmap.fr/w/7YynqrJXDzM9K1V9gKWCf7)
+- [State of the Map Europe 2023](https://2023.stateofthemap.eu/program/clearance-monitoring-and-extracting-data-from-osm-under-quality-constraints)
 
 ---
-
-`takeaway=slides`
-
-![](include/qrcode.svg)
-
-https://s.carto.guide/ib3j0m
-
-Demo Beta
-[https://clearance-dev.teritorio.xyz](https://clearance-dev.teritorio.xyz)
