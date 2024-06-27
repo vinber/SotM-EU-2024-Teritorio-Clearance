@@ -3,7 +3,6 @@ title: 2024 - Clearance, contrôler collaborativement des données OpenStreetMap
 css: 'style.css'
 ---
 
-
 # Clearance
 ## contrôler collaborativement des données OpenStreetMap pour des usages thématiques 
 
@@ -28,7 +27,6 @@ Souhait
 - Contribuer à OSM
 - Améliorer les données d'abord dans OSM
 - Collaborer
-- **Mettre à jour les données**
 
 ---
 
@@ -95,9 +93,10 @@ Regroupement de modifications faites localement (proximité géographique) :
 
 ### une api "overpass" partielle
 
-- la base "filtrée" en sortie de Clearance est interrogeable
-- des requêtes overpass peuvent être faites (voir la conférence underpass ...)
-- permet de passer de requêtes overpass sur OSM à une base OSM filtrée,
+- la base "filtrée" en sortie de Clearance est interrogeable,
+- des requêtes overpass peuvent être faites
+  - [Présentation Underpass-API requêtes Overpass sur une base de données SQL Vendredi 17h salle 325](https://pretalx.com/sotm-fr-2024/talk/A3TRQ8/) ...)
+- permet de garder les requêtes overpass en interrogeant une base "vérifiée",
 
 ---
 
