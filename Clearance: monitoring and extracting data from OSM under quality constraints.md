@@ -4,9 +4,9 @@ css: 'style.css'
 ---
 
 # Clearance
-## contrôler collaborativement des données OpenStreetMap pour des usages thématiques 
+### contrôler collaborativement des données OpenStreetMap pour des usages thématiques 
 
-## SotM FR 2024
+### SotM FR 2024
 
 - Vincent Bergeot - v.bergeot@teritorio.fr
 - Frédéric Rodrigo - f.rodrigo@teritorio.fr
