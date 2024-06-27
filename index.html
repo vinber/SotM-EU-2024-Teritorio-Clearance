@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>2024 - Clearance, filtrer les données OSM pour conserver en qualité de la base utilisée</title>
+    <link rel="shortcut icon" href="./favicon.ico" />
+    <link rel="stylesheet" href="./dist/reset.css" />
+    <link rel="stylesheet" href="./dist/reveal.css" />
+    <link rel="stylesheet" href="./dist/theme/white.css" id="theme" />
+    <link rel="stylesheet" href="./css/highlight/base16/zenburn.css" />
+
+    <link rel="stylesheet" href="./_assets/style.css" />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-markdown data-separator="\r?\n---\r?\n" data-separator-vertical="\r?\n----\r?\n">
+          <textarea data-template>
+            
+
+
+# Clearance
+## Suivre et extraire des données d’OSM sous contrainte de qualité
+
+## SotM FR 2024
+
+Vincent Bergeot - v.bergeot@teritorio.fr
+Frédéric Rodrigo - f.rodrigo@teritorio.fr
+
+Teritorio
+
+---
+
+## Contexte
+
+Besoins
+- Exposer et diffuser des données OSM
+  - site web, carte papier
+- Qualité et responsabilité contenu
+  - par ex. DAE
+
+Souhait
+- Contribuer à OSM
+- Améliorer les données d'abord dans OSM
+- Collaborer
+- **Mettre à jour les données**
+
+---
+
+# Clearance
+
+----
+
+## Projet Clearance
+
+1 instance Clearance, plusieurs projets.
+
+Un projet. Une communauté.
+- Une zone
+- Une thématique
+- Règles de validation
+
+Par ex : le tourisme, les stations ferroviaires, la randonnée …
+
+----
+
+### Clearance dans un projet
+
+- formation dans les OT
+- contributions pour arriver à un niveau accepté de qualité
+- Clearance accompagne la montée en qualité des données OSM
+- mise en ligne de la cartographie publique
+- Clearance permet de maintenir la qualité des données OSM
+
+
+----
+
+### Des objets filtrés
+
+- base *réputée juste* (un extract)
+- les modifications (diff) arrivent
+  - par défaut dans la base sauf sur la zone d'intérêt si
+      - effacement d'objets
+      - déplacement d'objets selon une distance personalisable
+      - des attributs surveillés
+      - des listes de contributeurs
+- à chaque recalcul suite à des modifications (diff) les objets signalés sont réévalués
+
+----
+
+### Local Changeset (LoCha)
+
+Regroupement de modifications faites localement (proximité géographique) :
+- actuellement pour permettre une validation manuelle contextualisé
+- ensuite pour avoir des validations automatiques sur des LoCha (un objet (node) effacé et recréé (way) avec les mêmes attributs, ...)
+  - 
+
+----
+
+### validation manuelle
+
+- validation collaborative par projet basé sur les comptes OSM
+- les objets filtrés sont :
+  - aggrégés (3 modifications faites dans OSM, cela passe de la version X à la version X+3)
+  - contextualisés avec les LoCha,
+  - filtrables selon le territoire, l'utilisateur, la date de modifications, les attributs
+  - associés à des outils pour mieux comprendre les modifications,
+  - liés à vos éditeurs préférés pour aller modifier OSM,
+  - acceptés (individuellement ou par lots)
+
+----
+
+### une api "overpass" partielle
+
+- la base "filtrée" en sortie de Clearance est interrogeable
+- des requêtes overpass peuvent être faites (voir la conférence underpass ...)
+- permet de passer de requêtes overpass sur OSM à une base OSM filtrée,
+
+---
+
+## Clearance en prod
+
+- ✅ Import / Export + diff
+- ⌛ Jeux de règle de validation
+- ⏳ Interface de contrôle et validation manuelle
+- ⌛ Validation par LoCha
+
+[Démo](https://clearance.teritorio.xyz/)
+
+---
+
+## Et la suite pour Clearance
+
+
+- Les améliorations
+    - l'interface, signalement RSS, ...
+    - anotations sur les signalements (à mofifier, besoin d'aide, ...)
+    - les LoCha,
+    - les validations automatiques de LoCha
+    - des règles de qualité pour valider automatiquement des objets (opening_hours, téléphone, https://, ...),
+    - réputation des contributrices, contributeurs
+    - 
+
+
+
+
+
+---
+
+## En savoir plus
+
+- https://github.com/teritorio/clearance
+- https://github.com/teritorio/clearance-frontend
+- [State of the Map France 2023](https://peertube.openstreetmap.fr/w/7YynqrJXDzM9K1V9gKWCf7)
+- [State of the Map Europe 2023](https://2023.stateofthemap.eu/program/clearance-monitoring-and-extracting-data-from-osm-under-quality-constraints)
+
+---
+
+          </textarea>
+        </section>
+      </div>
+    </div>
+
+    <script src="./dist/reveal.js"></script>
+
+    <script src="./mermaid/dist/mermaid.min.js"></script>
+
+    <script src="./plugin/markdown/markdown.js"></script>
+    <script src="./plugin/highlight/highlight.js"></script>
+    <script src="./plugin/zoom/zoom.js"></script>
+    <script src="./plugin/notes/notes.js"></script>
+    <script src="./plugin/math/math.js"></script>
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+
+      // default options to init reveal.js
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        slideNumber: true,
+        highlight: {
+          highlightOnLoad: false
+        },
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealZoom,
+          RevealNotes,
+          RevealMath
+        ]
+      };
+
+      // options from URL query string
+      var queryOptions = Reveal().getQueryHash() || {};
+
+      var options = extend(defaultOptions, {"controls":true,"progress":true,"_":["Clearance: monitoring and extracting data from OSM under quality constraints.md"],"static":"build","theme":"white"}, queryOptions);
+    </script>
+
+
+    <script>
+      Reveal.initialize(options);
+      Reveal.addEventListener('ready', function (event) {
+        const blocks = Reveal.getRevealElement().querySelectorAll('pre code:not(.mermaid)');
+        const hlp = Reveal.getPlugin('highlight');
+        blocks.forEach(hlp.highlightBlock);
+      });
+    </script>
+
+    <script>
+      const mermaidOptions = extend({ startOnLoad: false }, {});
+      mermaid.startOnLoad = false;
+      mermaid.initialize(mermaidOptions);
+      const cb = function (event) { mermaid.init(mermaidOptions, '.stack.present>.present pre code.mermaid'); };
+      Reveal.addEventListener('ready', cb);
+      Reveal.addEventListener('slidetransitionend', cb);
+    </script>
+  </body>
+</html>
